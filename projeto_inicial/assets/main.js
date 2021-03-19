@@ -11,9 +11,14 @@ const criarTarefa = (evento) => {
     const input = document.querySelector('[data-form-input]')
     const valor = input.value
 
+    const divErro = document.querySelector('[data-erro]')
+    const erro = `<p class="mensagem-erro">Campo vazio!</p>`
+
     if (valor == '') {
-        alert('Por favor, insira um valor no input.')
+        divErro.innerHTML = erro
         return
+    } else {
+        divErro.innerHTML = ''
     }
 
     const tarefa = document.createElement('li')

@@ -10,25 +10,26 @@ const handleNovoItem = (evento) => {
 
     const calendario = document.querySelector('[data-form-date]')
     const data = moment(calendario.value)
-
     const dataFormat = data.format('DD/MM/YYYY')
 
     const divErro = document.querySelector('[data-erro]')
     const erro = `<p class="mensagem-erro">Campo vazio!</p>`
+    if (valor == '') return divErro.innerHTML = erro
+    else divErro.innerHTML = ''
 
-    if (valor == '') {
-        divErro.innerHTML = erro
-        return
-    } else {
-        divErro.innerHTML = ''
+    const dados = {
+        valor,
+        dataFormat
     }
 
-    list.appendChild(tarefa)
+    const criaTarefa = criarTarefa(dados)
+
+    list.appendChild(criaTarefa)
     input.value = " "
 
 }
 
-const criarTarefa = () => {
+const criarTarefa = ({ valor, dataFormat }) => {
 
     const tarefa = document.createElement('li')
     tarefa.classList.add('task')

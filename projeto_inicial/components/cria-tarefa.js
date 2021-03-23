@@ -19,9 +19,12 @@ export const handleNovoItem = (evento) => {
     if (valor == '') return divErro.innerHTML = erro
     else divErro.innerHTML = ''
 
+    const concluida = false
+
     const dados = {
         valor,
-        dataFormat
+        dataFormat,
+        concluida
     }
 
     const tarefasAtualizadas = [...tarefas, dados]
@@ -34,15 +37,19 @@ export const handleNovoItem = (evento) => {
 
 }
 
-export const Tarefa = ({ valor, dataFormat }) => {
+export const Tarefa = ({ valor, dataFormat, concluida }, id) => {
 
     const tarefa = document.createElement('li')
-    tarefa.classList.add('task')
     const conteudo = `<p class="content">${dataFormat} * ${valor}</p>`
 
+    if (concluida) {
+        tarefa.classList.add('done')
+    }
+
+    tarefa.classList.add('task')
     tarefa.innerHTML = conteudo
 
-    tarefa.appendChild(BotaoConclui())
+    tarefa.appendChild(BotaoConclui(carregaTarefa, id))
     tarefa.appendChild(BotaoDeleta())
 
     return tarefa

@@ -1,3 +1,4 @@
+import { criaData } from "./cria-data.js"
 import { Tarefa } from "./cria-tarefa.js"
 
 export const carregaTarefa = () => {
@@ -7,6 +8,7 @@ export const carregaTarefa = () => {
 
     lista.innerHTML = ""
     tarefasCadastradas.forEach((tarefa) => {
-        lista.appendChild(Tarefa(tarefa))
+        const dia = moment(tarefa.dataFormat, 'DD/MM/YYYY')
+        lista.appendChild(criaData(dia))
     })
 }

@@ -1,4 +1,4 @@
-import { removeDatasRepetidas } from "../service/data.js"
+import { ordenaDatas, removeDatasRepetidas } from "../service/data.js"
 import { criaData } from "./cria-data.js"
 import { Tarefa } from "./cria-tarefa.js"
 
@@ -9,7 +9,7 @@ export const carregaTarefa = () => {
 
     lista.innerHTML = ""
     const datasUnicas = removeDatasRepetidas(tarefasCadastradas)
-
+    ordenaDatas(datasUnicas)
     datasUnicas.forEach((dia) => {
         lista.appendChild(criaData(dia))
 
